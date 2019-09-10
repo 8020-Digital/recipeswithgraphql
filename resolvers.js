@@ -14,10 +14,19 @@ exports.resolvers = {
 
             let documents = await Recipe.find()
             return documents
+        },
+        searchRecipes: async (root, args, context) => {
+            const { Recipe } = context
+            const { searchTerm } = args
+
+            const documents = await Recipe.find({ $text: { $search: searchTerm } })
+
+            return documents
         }
     },
 
     Mutation: {
+
         addRecipe: async (root, args, context) => {
             let { Recipe } = context
             let document = args

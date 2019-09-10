@@ -1,6 +1,7 @@
 exports.typeDefs = `
 type Query {
     getAllRecipes: [Recipe]
+    searchRecipes(searchTerm: String): [Recipe]
 }
 
 type Mutation {
